@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import SertifikatService from './certificate.service';
 import CertificateService from './certificate.service';
 import { NgIf } from '@angular/common';
+import AppComponent from '../../app.component';
 
 @Component({
   standalone: true,
@@ -10,19 +11,21 @@ import { NgIf } from '@angular/common';
   templateUrl: './certificate.component.html',
   styleUrls: ['./certificate.component.scss'],
 })
-export default class Cert implements OnInit{
-  imageUrl: string | null = null
+export default class CertificateComponent implements OnInit {
+  @Output() imageReady = new EventEmitter<string>();
+  imageUrl: string | null = null;
 
-  constructor(private certificateService:CertificateService ){}
+  constructor(private certificateService: CertificateService) {}
 
-  ngOnInit(){
+  ngOnInit() {
     this.certificateService.getImage().subscribe({
       next: (blob) => {
-        this.imageUrl = URL.createObjectURL(blob)
+        this.imageUrl = URL.createObjectURL(blob);
+        this.imageReady.emit(this.imageUrl);
       },
       error: (error) => {
-        console.log(error);
-      }
-    })
+        console.error(error);
+      },
+    });
   }
 }

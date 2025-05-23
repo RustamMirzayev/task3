@@ -1,15 +1,14 @@
-import { Component } from '@angular/core';
+import { Component} from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import Cert from "./components/certificate/certificate.component";
-import Buttonscomponent from "./components/buttons/buttons.component";
+import GenerateCertificateComponent from "./components/generate-certificate/generate-certificate.component";
 
 @Component({
   standalone: true,
   selector: 'app-root',
-  imports: [RouterOutlet, Cert, Buttonscomponent],
+  imports: [RouterOutlet, GenerateCertificateComponent],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
-  title = 'sertifikt';
+export default class AppComponent {
+  
 }

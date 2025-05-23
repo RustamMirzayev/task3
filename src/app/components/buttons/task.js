@@ -1,10 +1,21 @@
-function is_array(message){
-    // return typeof message.forEach === 'function'
-    // return Object.prototype.toString.call(message) === '[object Array]'
-    // return Array.isArray(message)
-    // return message.constructor === Array
-    return message instanceof Array
+function first(arr,n){
+    if(n === null){
+        return arr[0]
+    }
+
+    if(arr === null){
+        return
+    }
+
+    return arr.slice(0,n)
 }
 
-console.log(is_array('w3resource'));
-console.log(is_array([1, 2, 4, 0]));
+console.log(first([7, 9, 0, -2]));
+
+console.log(first([],3));
+
+console.log(first([7, 9, 0, -2],3));
+
+console.log(first([7, 9, 0, -2],6));
+
+console.log(first([7, 9, 0, -2],-3));

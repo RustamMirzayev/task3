@@ -1,5 +1,4 @@
-import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   standalone: true,
@@ -9,9 +8,28 @@ import { Component } from '@angular/core';
   styleUrls: ['./buttons.component.scss'],
 })
 export default class Buttonscomponent {
-  constructor(private http: HttpClient) {}
+  @Input() imageBlobUrl: string | null = null;
 
-  downloadImage(event: MouseEvent) {
-    // this.http.head
+  downloadImage(linkElement: HTMLAnchorElement): void {
+    if (!this.imageBlobUrl) {
+      alert('Rasm hali yuklanmadi');
+      return;
+    }
+    linkElement.href = this.imageBlobUrl;
+    linkElement.download = 'sertifikat.jpg';
+    linkElement.click();
+  }
+
+  link: string = 'https://picsum.photos/200/300';
+
+  copyLink() {
+    navigator.clipboard
+      .writeText(this.link)
+      .then(() => {
+        alert('Havola nusxalandi: ' + this.link);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
   }
 }
