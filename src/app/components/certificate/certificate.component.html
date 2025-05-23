@@ -1,0 +1,9 @@
+<div *ngIf="imageUrl; else elseTemplate" class="mt-5 px-4">
+    <img src="{{imageUrl}}" alt="" class="w-full h-full">
+</div>
+
+<ng-template #elseTemplate>
+  <div class="text-center">
+    Sertifikat topilmadi!
+  </div>
+</ng-template>

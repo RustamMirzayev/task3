@@ -3,12 +3,12 @@ import { Component } from '@angular/core';
 
 @Component({
   standalone: true,
-  selector: 'app-footer',
+  selector: 'app-buttons',
   imports: [],
-  templateUrl: './footer.component.html',
-  styleUrls: ['./footer.component.scss'],
+  templateUrl: './buttons.component.html',
+  styleUrls: ['./buttons.component.scss'],
 })
-export default class FooterComponent {
+export default class Buttonscomponent {
   constructor(private http: HttpClient) {}
 
   downloadImage(event: MouseEvent) {
