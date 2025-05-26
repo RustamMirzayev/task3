@@ -1,4 +1,5 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+
 
 @Component({
   standalone: true,
@@ -9,6 +10,7 @@ import { Component, Input } from '@angular/core';
 })
 export default class Buttonscomponent {
   @Input() imageBlobUrl: string | null = null;
+   telegram = window.Telegram?.WebApp;
 
   downloadImage(linkElement: HTMLAnchorElement): void {
     if (!this.imageBlobUrl) {
@@ -30,5 +32,35 @@ export default class Buttonscomponent {
       .catch((err) => {
         console.error(err);
       });
+  }
+
+  ngOnInit() {
+    if (this.telegram) {
+      this.telegram.ready();
+      this.telegram.MainButton.setText("Yuborish");
+      this.telegram.MainButton.show();
+      this.telegram.MainButton.onClick(() => {
+        alert('Telegram MainButton bosildi!');
+      });
+    }
+  }
+
+  sendData() {
+    if (this.telegram) {
+      alert('Ma\'lumot yuborildi');
+    }
+  }
+
+  toTelegram(){
+    // this.encodeUrl()
+  }
+  encodeUrl(originalUrl: string): string {
+    return btoa(originalUrl); // base64-encode
+  }
+
+  ngOnDestroy() {
+    if (this.telegram) {
+      this.telegram.MainButton.hide();
+    }
   }
 }

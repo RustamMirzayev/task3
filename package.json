@@ -19,9 +19,13 @@
     "@angular/router": "^19.2.0",
     "@tailwindcss/postcss": "^4.1.7",
     "angularx-qrcode": "^19.0.0",
+    "body-parser": "^2.2.0",
+    "express": "^5.1.0",
+    "node-telegram-bot-api": "^0.66.0",
     "postcss": "^8.5.3",
     "rxjs": "~7.8.0",
     "tailwindcss": "^4.1.7",
+    "telegraf": "^4.16.3",
     "tslib": "^2.3.0",
     "zone.js": "~0.15.0"
   },
@@ -37,5 +41,9 @@
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
     "typescript": "~5.7.2"
-  }
+  },
+  "description": "This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.9.",
+  "main": "index.js",
+  "author": "",
+  "license": "ISC"
 }
