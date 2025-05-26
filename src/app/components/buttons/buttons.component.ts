@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import CertificateService from '../certificate/certificate.service';
 
 
 @Component({
@@ -11,6 +12,8 @@ import { Component, Input, OnInit } from '@angular/core';
 export default class Buttonscomponent {
   @Input() imageBlobUrl: string | null = null;
    telegram = window.Telegram?.WebApp;
+     constructor(private certificateService: CertificateService) {}
+   
 
   downloadImage(linkElement: HTMLAnchorElement): void {
     if (!this.imageBlobUrl) {
@@ -52,7 +55,14 @@ export default class Buttonscomponent {
   }
 
   toTelegram(){
-    // this.encodeUrl()
+    console.log(this.certificateService.imgLink.getValue());
+    let str = "";
+    this.certificateService.imgLink.subscribe(v=>{
+      str = v?.split("/")[4] + "a444444444" +  v?.split("=")[1];
+
+    })
+    console.log(str);
+    return str;
   }
   encodeUrl(originalUrl: string): string {
     return btoa(originalUrl); // base64-encode

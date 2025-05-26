@@ -8,11 +8,16 @@ import { BehaviorSubject, Observable } from 'rxjs';
 export default class CertificateService {
   constructor(private http: HttpClient) {}
 
-  img:BehaviorSubject<any> = new BehaviorSubject<Blob | undefined>(undefined);
+  imgLink:BehaviorSubject<string | undefined> = new BehaviorSubject<string | undefined>(undefined);
 
-  getImage(): Observable<Blob>{
-    let a = this.http.get("https://picsum.photos/1000/500", {responseType: 'blob'});
-    this.img.next(a);
-    return a;
-  }
+
+  getImageWithUrl(): Promise<{ blob: Blob; url: string }> {
+  return fetch("https://picsum.photos/1000/500", { method: 'GET', redirect: 'follow' })
+    .then(async (response) => {
+      const url = response.url;
+      this.imgLink.next(url); 
+      const blob = await response.blob();
+      return { blob, url };
+    });
+}
 }

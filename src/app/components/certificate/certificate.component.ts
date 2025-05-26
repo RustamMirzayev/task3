@@ -18,20 +18,13 @@ export default class CertificateComponent implements OnInit {
   constructor(private certificateService: CertificateService) {}
 
   ngOnInit() {
+  this.certificateService.getImageWithUrl()
+    .then(({ blob, url }) => {
+      console.log('Redirected URL:', url);
 
-    
-    this.certificateService.getImage().subscribe({
-      next: (blob) => {
-        console.log(blob);
-        
-        this.imageUrl = URL.createObjectURL(blob);
-        console.log(this.imageUrl);
-        
-        this.imageReady.emit(this.imageUrl);
-      },
-      error: (error) => {
-        console.error(error);
-      },
-    });
+      this.imageUrl = URL.createObjectURL(blob);
+      this.imageReady.emit(this.imageUrl);
+    })
+    .catch(error => console.error(error));
   }
 }

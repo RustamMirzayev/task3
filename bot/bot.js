@@ -1,16 +1,28 @@
 const { Telegraf, Markup } = require('telegraf');
 const bot = new Telegraf('7753607662:AAEc2EpKVanuFm5g_q3V6_GZDec1D6GxTXM');
 
-bot.start((ctx) => {
-    const startPayload = ctx.startPayload;
-    console.log(startPayload);
+bot.start(async (ctx) => {
+  const startPayload = ctx.startPayload || ctx.message?.text?.split(' ')[1]; 
 
-    const decoded = Buffer.from(encoded, 'base64').toString('utf8');
-    
-  return ctx.reply('Sertifikatni olish uchun pastdagi tugmani bosing', Markup.inlineKeyboard([
-    Markup.button.webApp('Sertifikatni olish', 'https://certificate-task.netlify.app/')
-  ]));
+  if (!startPayload) {
+    return ctx.reply('Xush kelibsiz! Payload topilmadi.');
+  }
+
+  console.log(startPayload);
+  
+  id = startPayload.split("a444444444")[0];
+  str = startPayload.split("a444444444")[1];
+  console.log(str);
+  
+
+  const response = await fetch("https://fastly.picsum.photos/id/" + id + "/1000/500.jpg?hmac=" + str);
+  const buffer = await response.buffer();
+
+  await ctx.replyWithPhoto({ source: buffer }, { caption: 'Rasm yuklandi' });
 });
+
+
+
 
 const fetch = require('node-fetch');
 
