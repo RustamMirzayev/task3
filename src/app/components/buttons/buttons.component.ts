@@ -17,7 +17,6 @@ export default class Buttonscomponent {
     }
     linkElement.href = this.imageBlobUrl;
     linkElement.download = 'sertifikat.jpg';
-    linkElement.click();
   }
 
   link: string = 'https://picsum.photos/200/300';
